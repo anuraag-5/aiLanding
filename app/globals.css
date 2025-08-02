@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer utilities {
+    .bg-grd {
+        @apply [background-image:radial-gradient(circle,_rgba(252,_78,_3,_0.5)_0%,_rgba(252,_78,_3,_0.3)_3%,_rgba(252,_78,_3,_0.3)_6%,_rgba(252,_78,_3,_0.2)_15%,_transparent_35%)]
+    }
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}

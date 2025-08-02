@@ -9,8 +9,7 @@ const Model = () => {
   const mesh1 = useRef<HTMLMesh | null>(null);
   const mesh2 = useRef<HTMLMesh | null>(null);
   const { viewport } = useThree();
-  const { nodes: Sphere } = useGLTF("/objects3d/sphere-text.glb");
-  const { nodes: Circle } = useGLTF("/objects3d/mball2.glb");
+  const { nodes: RigidCircle } = useGLTF("/objects3d/rigid-sphere.glb");
 
   useFrame(() => {
     mesh1.current!.rotation.y += 0.0055;
@@ -18,6 +17,7 @@ const Model = () => {
     mesh1.current!.rotation.x += 0.0055;
     mesh2.current!.rotation.x += 0.0055;
   });
+
   const materialProps = {
     roughness: 0.50,
     thickness: 0.60,
@@ -27,13 +27,15 @@ const Model = () => {
     chromaticAberration: 0.02,
     color: "white"
   }
+
   return (
     <group>
-        <mesh { ...Sphere.Sphere } ref={mesh1} position={[0, 0, 0]} scale={ viewport.width / 17}>
-            <MeshTransmissionMaterial { ...materialProps } />
+      {/* <OrbitControls /> */}
+        <mesh { ...RigidCircle.Mball001 } ref={mesh1} position={[0, 0, 0]} scale={ viewport.width / 23}>
+            <MeshTransmissionMaterial { ...materialProps } transmission={0.50} />
         </mesh>
-        <mesh { ...Circle.Mball001 } ref={mesh2} position={[0, 0, 0]} scale={ viewport.width / 14 }>
-            <MeshTransmissionMaterial {...materialProps} roughness={0.05} />
+        <mesh { ...RigidCircle.Mball001 } ref={mesh2} position={[0, 0, 0]} scale={ viewport.width / 16 }>
+            <MeshTransmissionMaterial {...materialProps} roughness={0} thickness={0.2} ior={1.5} />
         </mesh>
     </group>
   )
