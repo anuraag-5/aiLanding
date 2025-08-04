@@ -10,7 +10,7 @@ type SceneProps = {
 
 const Scene = ({ canvasRef }: SceneProps) => {
   return (
-    <Canvas className="bg-black absolute" ref={canvasRef}>
+    <Canvas className="bg-black" ref={canvasRef}>
       <Environment preset="city"/>
       <directionalLight color={"#e89f6b"} intensity={3} position={[0, 3, 2]}/>
         <Model />

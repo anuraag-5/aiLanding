@@ -9,5 +9,5 @@ export const mainFont2 = localFont({
 });
 
 export const mainFont3 = localFont({
-    src: "../public/fonts/MozillaHeadline.ttf"
+    src: "../public/fonts/Handlee-Regular.ttf"
 });

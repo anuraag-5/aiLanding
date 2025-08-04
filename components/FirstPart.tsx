@@ -1,9 +1,10 @@
-import React from "react";
+import { RefObject } from "react";
+import P1FP from "./P1FP";
 
-const FirstPart = () => {
+const FirstPart = ({ ref }: { ref: RefObject<HTMLDivElement | null>}) => {
   return (
-    <div className="absolute flex justify-center items-center w-full h-full">
-      FirstPart
+    <div className="absolute min-h-screen min-w-screen bg-transparent text-white">
+      <P1FP ref={ref} />
     </div>
   );
 };

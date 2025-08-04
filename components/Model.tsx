@@ -9,13 +9,13 @@ const Model = () => {
   const mesh1 = useRef<HTMLMesh | null>(null);
   const mesh2 = useRef<HTMLMesh | null>(null);
   const { viewport } = useThree();
-  const { nodes: RigidCircle } = useGLTF("/objects3d/rigid-sphere.glb");
+  const { nodes: RigidCircle } = useGLTF("/objects3d/Sphere.glb");
 
   useFrame(() => {
-    mesh1.current!.rotation.y += 0.0055;
-    mesh2.current!.rotation.y += 0.0055;
-    mesh1.current!.rotation.x += 0.0055;
-    mesh2.current!.rotation.x += 0.0055;
+    mesh1.current!.rotation.y += 0.01;
+    mesh2.current!.rotation.y += 0.01;
+    mesh1.current!.rotation.x += 0.01;
+    mesh2.current!.rotation.x += 0.01;
   });
 
   const materialProps = {
@@ -29,13 +29,14 @@ const Model = () => {
   }
 
   return (
+    // Todo: Conditionally set size of Sphere using windows.innerWidth
     <group>
       {/* <OrbitControls /> */}
-        <mesh { ...RigidCircle.Mball001 } ref={mesh1} position={[0, 0, 0]} scale={ viewport.width / 23}>
+        <mesh { ...RigidCircle.Sphere } ref={mesh1} position={[0, 0, 0]} scale={ viewport.width / 23}>
             <MeshTransmissionMaterial { ...materialProps } transmission={0.50} />
         </mesh>
-        <mesh { ...RigidCircle.Mball001 } ref={mesh2} position={[0, 0, 0]} scale={ viewport.width / 16 }>
-            <MeshTransmissionMaterial {...materialProps} roughness={0} thickness={0.2} ior={1.5} />
+        <mesh { ...RigidCircle.Sphere } ref={mesh2} position={[0, 0, 0]} scale={ viewport.width / 16 }>
+            <MeshTransmissionMaterial {...materialProps} roughness={0.20} thickness={0.2} ior={1.5} />
         </mesh>
     </group>
   )
