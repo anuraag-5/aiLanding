@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import FirstPart from "@/components/FirstPart";
-import { mainFont, mainFont2, mainFont3 } from "./fonts";
+import { mainFont2, mainFont3 } from "./fonts";
 import SecondPart from "@/components/SecondPart";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,7 +38,7 @@ const Page = () => {
       });
 
       gsap.set(ref3.current, {
-        yPercent: 100
+        yPercent: 100,
       });
 
       const tl = gsap.timeline({
@@ -69,16 +69,24 @@ const Page = () => {
         0
       );
 
-      tl.to(ref2.current, {
-        opacity: 0,
-        duration: 0.015
-      }, width! > 768 ? 0.15 : 0.13)
+      tl.to(
+        ref2.current,
+        {
+          opacity: 0,
+          duration: 0.015,
+        },
+        width! > 768 ? 0.15 : 0.13
+      );
 
-      tl.to(ref3.current, {
-        yPercent: width! > 768 ? 0 : -15,
-        opacity: 1,
-        duration: width! > 768 ? 0.1 : 0.2
-      }, width! > 768 ? 0.1 : 0.05)
+      tl.to(
+        ref3.current,
+        {
+          yPercent: width! > 768 ? 0 : -15,
+          opacity: 1,
+          duration: 0.2,
+        },
+        width! > 768 ? 0.1 : 0.05
+      );
     },
     { dependencies: [width], revertOnUpdate: true }
   );
@@ -111,7 +119,10 @@ const Page = () => {
           ></div>
         )}
         <Navbar />
-        <div className="z-20 absolute mb-22 flex flex-col items-center gap-6 md:top-35 top-30" ref={ref2}>
+        <div
+          className="z-20 absolute mb-22 flex flex-col items-center gap-6 md:top-35 top-30"
+          ref={ref2}
+        >
           <div
             className={
               mainFont3.className +
@@ -159,8 +170,8 @@ const Page = () => {
           </div>
         </div>
         <Scene canvasRef={canvasRef} />
-      <FirstPart ref={ref3} />
-      <SecondPart />
+        <FirstPart ref={ref3} />
+        <SecondPart />
       </div>
     </>
   );
